@@ -84,7 +84,7 @@ $(function() {
          * a single .entry element within the .feed container.
          */
 
-         // LoadFeed() is asynchronous so this test will require
+         // loadFeed() is asynchronous so this test will require
          // the use of Jasmine's beforeEach and asynchronous done() function.
          beforeEach(function(done) {
             loadFeed(0, done);
@@ -101,8 +101,21 @@ $(function() {
 
         /* Spec 1: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
          */
+
+         var firstFeed;
+         var newFeed;
+
+        // loadFeed() is asynchronous
+        beforeEach(function(done) {
+            firstFeed = $(".feed").html();
+            loadFeed(0, done);
+        });
+        it("when a new feed is loaded by the loadFeed function that the content changes", function(done) {
+            newFeed = $(".feed").html();
+            expect(newFeed).not.toBe(firstFeed);
+            done();
+        });
 
     });
 
