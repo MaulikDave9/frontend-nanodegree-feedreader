@@ -87,18 +87,15 @@ $(function() {
 
          // LoadFeed() is asynchronous so this test will require
          // the use of Jasmine's beforeEach and asynchronous done() function.
-         beforeEach(function(cb) {
-            loadFeed(0,cb); 
-         }
-         it('after loadFeed call there is at least a single entry in the feed container', function(cb) {
+         beforeEach(function(done) {
+            loadFeed(0,done); 
+         });
+         it('after loadFeed call there is at least a single .entry in the .feed container', function(done) {
             
             var entry = $('.entry');
-            expect(entry.length).not.toBe(0); //at least one .entry element in .feed
-            cb();
+            expect(entry.length).toBeGreaterThan(0); //at least one .entry element in .feed
+            done();
         });
-        
-        
-     
     });
 
     
