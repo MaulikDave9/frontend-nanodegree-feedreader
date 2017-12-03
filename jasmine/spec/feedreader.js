@@ -98,6 +98,16 @@ $(function() {
         });
     });
 
+    /* A new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
+
+        /* Spec 1: Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
+         
+    }); 
+
     
          
 }());
