@@ -97,6 +97,7 @@ $(function() {
     });
 
     /* A new test suite named "New Feed Selection" */
+    //Reference: ttps://discussions.udacity.com/t/new-feed-selection-issue/167095/5
     describe("New Feed Selection", function() {
 
         /* Spec 1: Write a test that ensures when a new feed is loaded
@@ -109,7 +110,7 @@ $(function() {
         // loadFeed() is asynchronous
         beforeEach(function(done) {
             firstFeed = $(".feed").html();
-            loadFeed(0, done);
+            loadFeed(1, done);
         });
         it("when a new feed is loaded by the loadFeed function that the content changes", function(done) {
             newFeed = $(".feed").html();
