@@ -90,7 +90,6 @@ $(function() {
             loadFeed(0, done);
          });
          it("after loadFeed call there is at least a single .entry in the .feed container", function(done) {
-            
             var entry = $(".entry");
             expect(entry.length).toBeGreaterThan(0); //at least one .entry element in .feed
             done();
