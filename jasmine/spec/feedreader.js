@@ -31,17 +31,19 @@ $(function() {
          * object and ensures it has a URL defined and that the URL is not empty.
          */
          it("feed has a URL defined and that the URL is not empty", function() {
-            allFeeds.forEach(function(feed) {
+            for (const feed of allFeeds) {  // Learning ES6 magic per review.
                 expect(feed.url).toBeDefined();
                 expect(feed.length).not.toBe(0);
-            });
+            };
         });
 
         /* Spec 3: Write a test that loops through each feed in the allFeeds object
          * and ensures it has a name defined and that the name is not empty.
          */
          it("feed has a name defined and that the name is not empty", function() {
-            allFeeds.forEach(function(feed) {
+            //allFeeds.forEach(function(feed) { // changing to for loop from forEach
+            //Reference/Motivation: https://medium.com/@abustamam/for-loops-vs-foreach-in-javascript-7a977278a39e
+            for (const feed of allFeeds) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name).not.toBe("");
             });
