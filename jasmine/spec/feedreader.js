@@ -106,16 +106,20 @@ $(function() {
         var firstFeed;
         var newFeed;
         //load two different feeds and not rely on previous test to initialize the feed
+        //load one feed, then when it's done loading, populate firstFeed then load another feed
+        //and start the tests using done. Prevent race-condition call-back function passed in the second argument
+        //to loadFeed
         beforeEach(function(done) {
-            loadFeed(1, done);
-            firstFeed = $(".feed").html();
+            loadFeed(1, function() {
+                firstFeed = $(".feed").html();
+                loadFeed(0, function() {
+                    done();
+                });    
+            });    
         });    
-        it("when a new feed is loaded that the content changes", function(done) {
-            loadFeed(0, function(done) {
-                newFeed = $(".feed").html();
-                expect(newFeed).not.toBe(firstFeed);
-                //done();
-            });
+        it("when a new feed is loaded that the content changes", function() {
+            newFeed = $(".feed").html();
+            expect(newFeed).not.toBe(firstFeed);
         });
     });
 
