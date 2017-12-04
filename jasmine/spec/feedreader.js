@@ -33,7 +33,7 @@ $(function() {
          it("feed has a URL defined and that the URL is not empty", function() {
             for (const feed of allFeeds) {  //ES6 magic per review.
                 expect(feed.url).toBeDefined();
-                expect(feed.length).not.toBe(0);
+                expect(feed.url.length).not.toBe(0); //url is not empty
             };
         });
 
