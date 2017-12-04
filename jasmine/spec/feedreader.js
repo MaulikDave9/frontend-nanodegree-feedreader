@@ -89,10 +89,9 @@ $(function() {
          beforeEach(function(done) {
             loadFeed(0, done);
          });
-         it("after loadFeed call there is at least a single .entry in the .feed container", function(done) {
+         it("after loadFeed call there is at least a single .entry in the .feed container", function() {
             var entryCount = $(".feed .entry"); //jQuery $('.parent .child') gets all .entry under .feed
             expect(entryCount.length).toBeGreaterThan(0);
-            done();
         });
     });
 
@@ -107,20 +106,17 @@ $(function() {
         var firstFeed;
         var newFeed;
         //load two different feeds and not rely on previous test to initialize the feed
-        //load one feed, then when it's done loading, populate firstFeed then load another feed
-        //and start the tests using done. Prevent race-condition call-back function passed in the second argument
-        //to loadFeed.
         beforeEach(function(done) {
             loadFeed(1, done);
             firstFeed = $(".feed").html();
         });    
-        it("when a new feed is loaded that the content changes", function() {
-            loadFeed(0, function() {
+        it("when a new feed is loaded that the content changes", function(done) {
+            loadFeed(0, function(done) {
                 newFeed = $(".feed").html();
-                done();
+                expect(newFeed).not.toBe(firstFeed);
+                //done();
             });
-            expect(newFeed).not.toBe(firstFeed);
-        });  
+        });
     });
 
 }());
