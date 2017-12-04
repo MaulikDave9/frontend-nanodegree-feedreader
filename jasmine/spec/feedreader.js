@@ -31,7 +31,7 @@ $(function() {
          * object and ensures it has a URL defined and that the URL is not empty.
          */
          it("feed has a URL defined and that the URL is not empty", function() {
-            for (const feed of allFeeds) {  // Learning ES6 magic per review.
+            for (const feed of allFeeds) {  //ES6 magic per review.
                 expect(feed.url).toBeDefined();
                 expect(feed.length).not.toBe(0);
             };
@@ -41,12 +41,11 @@ $(function() {
          * and ensures it has a name defined and that the name is not empty.
          */
          it("feed has a name defined and that the name is not empty", function() {
-            //allFeeds.forEach(function(feed) { // changing to for loop from forEach
-            //Reference/Motivation: https://medium.com/@abustamam/for-loops-vs-foreach-in-javascript-7a977278a39e
+            //changing: allFeeds.forEach(function(feed) {
             for (const feed of allFeeds) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name).not.toBe("");
-            });
+            };
         });
     });
 
@@ -55,10 +54,9 @@ $(function() {
         /* Spec 1: Write a test that ensures the menu element is
          * hidden by default.
          * Looking at the HTML the hiding/showing of the menu element with
-         * menu-hidden class.  It doesn't have id to call element(by.id)
+         * menu-hidden class.
          */
         it("menu element is hidden by default", function() {
-            //expect(element(by.id('my-id')).isPresent()).toBe(true);
             expect($("body").hasClass("menu-hidden")).toBe(true);
         });
 
