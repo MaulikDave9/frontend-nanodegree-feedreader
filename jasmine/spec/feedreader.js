@@ -112,13 +112,11 @@ $(function() {
         beforeEach(function(done) {
             loadFeed(1, function() {
                 firstFeed = $(".feed").html();
-                loadFeed(0, function() {
-                    newFeed = $(".feed").html();
-                    done();
-                });    
-            });    
+                loadFeed(0, done);
+            });
         });    
         it("when a new feed is loaded that the content changes", function() {
+            newFeed = $(".feed").html();
             expect(newFeed).not.toBe(firstFeed);
         });
     });
