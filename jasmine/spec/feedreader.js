@@ -4,7 +4,7 @@
  * all of the tests that will be run against your application.
  */
 
-/* We're placing all of our tests within the $() function,
+/* Placing all of our tests within the $() function,
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
  */
@@ -103,21 +103,24 @@ $(function() {
         /* Spec 1: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
-
-         var firstFeed;
-         var newFeed;
-
-        // loadFeed() is asynchronous
+ 
+        var firstFeed;
+        var newFeed;
+        //load two different feeds and not rely on previous test to initialize the feed
+        //load one feed, then when it's done loading, populate firstFeed then load another feed
+        //and start the tests using done. Prevent race-condition call-back function passed in the second argument
+        //to loadFeed.
         beforeEach(function(done) {
-            firstFeed = $(".feed").html();
             loadFeed(1, done);
-        });
-        it("when a new feed is loaded by the loadFeed function that the content changes", function(done) {
-            newFeed = $(".feed").html();
+            firstFeed = $(".feed").html();
+        });    
+        it("when a new feed is loaded that the content changes", function() {
+            loadFeed(0, function() {
+                newFeed = $(".feed").html();
+                done();
+            });
             expect(newFeed).not.toBe(firstFeed);
-            done();
-        });
-
+        });  
     });
 
 }());
